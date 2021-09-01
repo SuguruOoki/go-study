@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM --platform=linux/x86_64 mysql:8.0
 
 ENV TZ Asia/Tokyo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && chown -R mysql:root /var/lib/mysql/
