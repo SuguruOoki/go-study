@@ -22,53 +22,19 @@ skinparam class {
     ArrowColor Black
 }
 
-package "英語面談予約システム" as target_system {
+package "メモ帳API" as target_system {
 
-    ' 面談予約される講師側の人の情報を保存している
-    entity "mentors" as mentors <<M,ALREADY_EXISTS_COLOR>> {
-        + id   [PK]
+    ' メモを予約するためのテーブル 
+    entity "memos" as memos <<M,ALREADY_EXISTS_COLOR>> {
+        + id [PK]
         --
-	name
-	introduce
-	email
-	created_at
-	updated_at
+	`title`: 
+	content: 
+	created_at: datetime
+	updated_at: datetime
     }
 
-    ' 面談予約する側の人の情報を保存している
-    entity "mentees" as mentees <<M,ALREADY_EXISTS_COLOR>> {
-        + id   [PK]
-	name
-	introduce
-	email
-	created_at
-	updated_at
-    }
-
-    ' 面談予約した時にいつ予約されているのかを保存している
-    ' 予約時間の単位については、15min, 30min, 45min, 60min を想定
-    entity "reservations" as reservations <<M,ALREADY_EXISTS_COLOR>> {
-	+ id [PK]
-	# mentor_id [FK]
-	# mentee_id [FK]
-	# duration_id [FK]
-	start_at
-	end_at
-	created_at
-	updated_at
-    }
-
-    entity "durations" as durations <<M,ALREADY_EXISTS_COLOR>> {
-	+id [PK]
-	unit_time  
-	created_at
-	updated_at
-    }
-
-    note left of mentees : 英語の面談予約をする側のこと
+    note left of memos : タイトル+内容で保存する。最初はログインなども何も入れないものとします。
 }
-
-mentors o-do-o{ reservations
-mentees o-do-o{ reservations
 
 @enduml
