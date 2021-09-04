@@ -1,9 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -23,7 +25,12 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func MemoIndex(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Memo Index!")
+	memos := Memos{
+		Memo{Title: "Write presentation"},
+		Memo{Title: "Host meetup"},
+	}
+
+	json.NewEncoder(w).Encode(memos)
 }
 
 func MemoShow(w http.ResponseWriter, r *http.Request) {
@@ -32,16 +39,14 @@ func MemoShow(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Memo show:", memoId)
 }
 
-import "time"
- 
 type Memo struct {
-    // NOTE: autoincrementの指定?
-    Id uint
-    Title     string
-    // NOTE: longText, mediumTextの指定?
-    content   string
-    created_at time.Time
-    updated_at time.Time
+	// NOTE: autoincrementの指定?
+	Id    uint
+	Title string
+	// NOTE: longText, mediumTextの指定?
+	content    string
+	created_at time.Time
+	updated_at time.Time
 }
- 
+
 type Memos []Memo
