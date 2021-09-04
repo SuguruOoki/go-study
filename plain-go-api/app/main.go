@@ -41,12 +41,12 @@ func MemoShow(w http.ResponseWriter, r *http.Request) {
 
 type Memo struct {
 	// NOTE: autoincrementの指定?
-	Id    uint
-	Title string
+	Id    uint   `json:"id"`
+	Title string `json:"title"`
 	// NOTE: longText, mediumTextの指定?
-	content    string
-	created_at time.Time
-	updated_at time.Time
+	Content    string    `json:"content"`
+	Created_at time.Time `json:"created_at"`
+	Updated_at time.Time `json:"updated_at"`
 }
 
 type Memos []Memo
