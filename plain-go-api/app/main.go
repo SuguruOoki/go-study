@@ -31,3 +31,17 @@ func MemoShow(w http.ResponseWriter, r *http.Request) {
 	memoId := vars["memoId"]
 	fmt.Fprintln(w, "Memo show:", memoId)
 }
+
+import "time"
+ 
+type Memo struct {
+    // NOTE: autoincrementの指定?
+    Id uint
+    Title     string
+    // NOTE: longText, mediumTextの指定?
+    content   string
+    created_at time.Time
+    updated_at time.Time
+}
+ 
+type Memos []Memo
