@@ -30,6 +30,7 @@ func NewRouter() *mux.Router {
 	return router
 }
 
+// TODO: routerとrouteのファイル分離を行う
 var routes = Routes{
 	Route{
 		"Index",
