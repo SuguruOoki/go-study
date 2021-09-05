@@ -4,7 +4,7 @@ import "time"
 
 type Memo struct {
 	// NOTE: autoincrementの指定?
-	Id    uint   `json:"id"`
+	Id    int    `json:"id"`
 	Title string `json:"title"`
 	// NOTE: longText, mediumTextの指定?
 	Content    string    `json:"content"`

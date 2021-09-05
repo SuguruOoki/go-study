@@ -13,25 +13,25 @@ func init() {
 }
 
 func RepoFindMemo(id int) Memo {
-	for _, t := range memos {
-		if t.Id == id {
-			return t
+	for _, m := range memos {
+		if m.Id == id {
+			return m
 		}
 	}
 	// return empty Memo if not found
 	return Memo{}
 }
 
-func RepoCreateMemo(t Memo) Memo {
+func RepoCreateMemo(m Memo) Memo {
 	currentId += 1
-	t.Id = currentId
-	memos = append(memos, t)
-	return t
+	m.Id = currentId
+	memos = append(memos, m)
+	return m
 }
 
 func RepoDestroyMemo(id int) error {
-	for i, t := range memos {
-		if t.Id == id {
+	for i, m := range memos {
+		if m.Id == id {
 			memos = append(memos[:i], memos[i+1:]...)
 			return nil
 		}
