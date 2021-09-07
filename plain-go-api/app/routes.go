@@ -1,8 +1,8 @@
+
 package main
 
 import "net/http"
 
-// routeに対する構造を定義
 type Route struct {
 	Name        string
 	Method      string
