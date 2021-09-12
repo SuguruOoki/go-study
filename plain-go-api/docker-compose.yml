@@ -1,4 +1,5 @@
-version: "3"
+
+version: "3.9"
 
 services:
   db:
@@ -11,7 +12,7 @@ services:
     volumes:
       - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
-      - "3310:3306"
+      - "3306:3306"
 
   web:
     build: .
@@ -29,10 +30,14 @@ services:
       - "./app:/app"
     depends_on:
       - db
+    ports:  
+      - "9000:9000"
 
   proxy:
-    build: ./nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     ports:
-      - 8082:80
+      - "8000:80"
     depends_on:
       - web

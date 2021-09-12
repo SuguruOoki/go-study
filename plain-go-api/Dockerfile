@@ -6,8 +6,8 @@ WORKDIR /app
 
 # モジュール管理のファイルをコピー
 # ↓こちらについては、Goのビルドをするようになってから、実行するように変更する。
-# COPY app/go.mod .
-# COPY app/go.sum .
+COPY app/go.mod .
+COPY app/go.sum .
 
 # 外部パッケージのダウンロード
 RUN go mod download
